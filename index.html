@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honey Beauty | Premium Meesho Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Afacad+Flux:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --meesho-pink: #ff6699;
+            --bg-color: #f8f9fa;
+            --dark-text: #3d2b2b;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; font-family: 'Afacad Flux', sans-serif; }
+        body { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--dark-text); overflow-x: hidden; }
+        h1, h2, h3, .logo { font-family: 'Comfortaa', cursive; }
+
+        header {
+            background: var(--white); padding: 12px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo { font-size: 26px; font-weight: bold; color: var(--meesho-pink); cursor: pointer; }
+        .search-container { width: 45%; }
+        .search-container input {
+            width: 100%; padding: 12px 20px; border-radius: 8px;
+            border: 1px solid #ccd1d9; outline: none; font-size: 15px;
+        }
+        .cart-status { background: #3d2b2b; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
+
+        /* 🔐 LOGIN PAGE */
+        #login-page {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffcbdc 100%);
+            display: flex; align-items: center; justify-content: center; z-index: 9999;
+        }
+        .login-card { background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        .login-card h1 { color: var(--meesho-pink); margin-bottom: 25px; }
+        .login-card input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; outline: none; font-size: 15px; }
+        .btn-main { width: 100%; background: var(--meesho-pink); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        /* 🏠 MAIN STORE & CATEGORIES */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        .brand-section-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; text-align: left; }
+        
+        .category-tabs { display: flex; gap: 15px; margin-bottom: 35px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
+        .tab-btn { background: white; border: 1px solid var(--border-color); padding: 12px 28px; font-size: 16px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; color: #555; }
+        .tab-btn:hover { border-color: var(--meesho-pink); color: var(--meesho-pink); }
+        .tab-btn.active { background: var(--meesho-pink); color: white; border-color: var(--meesho-pink); box-shadow: 0 4px 12px rgba(255, 102, 153, 0.2); }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .p-card { background: white; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; display: flex; flex-direction: column; transition: 0.3s; }
+        .p-card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+        .p-img-box { width: 100%; height: 250px; background: #fff; overflow: hidden; }
+        .p-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .p-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .p-price-row { font-size: 20px; font-weight: 700; color: #333; margin-top: 5px; }
+        .p-rating-badge { background: #38a169; color: white; padding: 2px 7px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 5px; }
+
+        /* 💄 DETAILS PAGE */
+        .details-layout { display: flex; gap: 40px; margin-top: 20px; align-items: flex-start; }
+        .details-left { width: 45%; position: sticky; top: 100px; }
+        .details-left img { width: 100%; height: 480px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); background: white; }
+        .details-right { width: 55%; display: flex; flex-direction: column; gap: 20px; }
+        .white-panel { background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border-color); text-align: left; }
+        .d-title { font-size: 24px; font-weight: 500; color: #444; margin: 0 0 10px 0; }
+        .d-price { font-size: 32px; font-weight: 700; color: #111; margin: 10px 0; }
+        .size-box { border: 1px solid var(--meesho-pink); color: var(--meesho-pink); background: #fff5f7; padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; }
+        
+        .btn-group { display: flex; gap: 15px; margin-top: 10px; width: 100%; }
+        .btn-group .btn-main { flex: 1; padding: 16px; font-size: 16px; }
+        
+        .info-label { font-weight: 700; font-size: 16px; margin-bottom: 8px; display: block; color: #222; text-transform: uppercase; letter-spacing: 0.5px;}
+        .info-text { font-size: 14.5px; color: #555; line-height: 1.6; margin: 0; }
+        .info-list { padding-left: 20px; margin: 5px 0 0 0; }
+        .info-list li { font-size: 14px; color: #555; margin-bottom: 4px; line-height: 1.5;}
+
+        .reviews-header { font-size: 18px; font-weight: 700; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; color: #333; }
+        .review-item { padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-align: left; }
+        .reviewer-name { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .review-text { font-size: 14px; color: #555; line-height: 1.5; margin-top: 5px; }
+
+        /* 📍 CHECKOUT PANEL */
+        .checkout-layout { max-width: 600px; margin: 0 auto; }
+        .checkout-card { background: white; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .checkout-card h2 { color: var(--meesho-pink); margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 12px; font-size: 24px; }
+        .checkout-card input { width: 100%; padding: 13px 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; outline: none; font-size: 15px; }
+        .success-block { text-align: center; padding: 40px 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="login-card">
+            <h1>Honey Beauty</h1>
+            <p>Welcome to Original Beauty Marketplace ✨</p>
+            <input type="email" id="email" placeholder="Enter Email ID" >
+            <input type="password" id="pass" placeholder="Enter Password (8+ chars)" >
+            <button class="btn-main" onclick="handleLogin()">Sign In & Shop Now</button>
+        </div>
+    </div>
+
+    <header id="app-header" style="display:none;">
+        <div class="logo" onclick="goToStoreHome()">🍯 HONEY BEAUTY</div>
+        <div class="search-container">
+            <input type="text" id="meesho-search" onkeyup="searchFilter()" placeholder="Search products...">
+        </div>
+        <div class="header-right">
+            <div class="cart-status">🛒 Cart Total: ₹<span id="cart-total">0</span></div>
+        </div>
+    </header>
+
+    <div id="store-page" style="display:none;">
+        <div class="main-container">
+            
+            <div class="brand-section-title">Shop by Category 🌟</div>
+            <div class="category-tabs">
+                <button class="tab-btn active" id="tab-all" onclick="filterCategory('all')">✨ All Products</button>
+                <button class="tab-btn" id="tab-makeup" onclick="filterCategory('makeup')">💄 Makeup Collection</button>
+                <button class="tab-btn" id="tab-skincare" onclick="filterCategory('skincare')">🌿 Skin Care Routine</button>
+            </div>
+
+            <div class="brand-section-title" id="grid-title">Our Best Sellers</div>
+            <div class="products-grid" id="meesho-product-grid"></div>
+        </div>
+    </div>
+
+    <div id="details-page" style="display:none;">
+        <div class="main-container">
+            <button class="btn-main" style="width: 150px; background: #333; margin-bottom: 25px;" onclick="goToStoreHome()">⬅️ Back to Shop</button>
+            <div class="details-layout">
+                <div class="details-left"><img id="meesho-det-img" src="" alt="Product View"></div>
+                <div class="details-right">
+                    <div class="white-panel">
+                        <h1 id="meesho-det-title" class="d-title">Product Title</h1>
+                        <div class="p-rating-badge" id="meesho-det-rate-badge">4.4 ★</div>
+                        <div class="d-price" id="meesho-det-price">₹0</div>
+                        <p style="color: #38a169; font-size: 13.5px; margin: 0; font-weight: bold;">✨ Free Delivery • Cash on Delivery (COD) Available</p>
+                    </div>
+                    <div class="white-panel">
+                        <span class="info-label">Product Description & Details 📋</span>
+                        <p class="info-text" id="meesho-det-description">Loading...</p>
+                        <br>
+                        <span class="info-label">Key Ingredients & Materials 🧪</span>
+                        <ul class="info-list" id="meesho-det-ingredients"></ul>
+                    </div>
+                    <div class="white-panel">
+                        <span style="font-weight: 700; font-size: 16px; display: block; margin-bottom: 10px; color: #333;">Select Size</span>
+                        <div class="size-box">Free Size (Standard)</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-main" id="btn-cart-toggle" onclick="toggleCartAction()"><i class="fa-solid fa-basket-shopping"></i> Add to Cart</button>
+                        <button class="btn-main" style="background: #3d2b2b;" onclick="goToCheckout()"><i class="fa-solid fa-bolt"></i> Buy Now</button>
+                    </div>
+                    <div class="white-panel">
+                        <div class="reviews-header">Product Ratings & Customer Reviews 💬</div>
+                        <div id="meesho-reviews-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-page" style="display:none;">
+        <div class="main-container">
+            <div class="checkout-layout">
+                <div class="checkout-card" id="checkout-form-block">
+                    
+                    <h2><i class="fa-solid fa-location-dot"></i> Delivery Address</h2>
+                    <input type="text" id="c-name" placeholder="Customer Full Name">
+                    <input type="tel" id="c-phone" placeholder="Mobile Number">
+                    <input type="text" id="c-address" placeholder="Flat / House No. / Landmark">
+                    <input type="text" id="c-pincode" placeholder="Pincode">
+                    <button class="btn-main" onclick="confirmFinalOrder()">Confirm Order 🎉</button>
+                </div>
+                <div class="checkout-card success-block" id="checkout-success-block">
+                    <h2>Order Placed Successfully!</h2>
+                    <p>Thank you, <strong id="display-cust-name" style="color: var(--meesho-pink);"></strong>!</p>
+                    <button class="btn-main" style="width: 200px; margin: 30px auto 0; background: #333;" onclick="resetToHomeStore()">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 🔮 ૧૦૦% સાચા કસ્ટમ સ્પેલિંગ મેચિંગ સાથેનો ડેટાબેઝ
+            const products = [
+    { id: 1, category: 'makeup', title: 'Honey Beauty Premium Matte Lipstick', price: 799, baseName: 'lipstick', rating: '4.8 ★', description: 'Crafted with natural waxes and pigments for a 12-hour velvety matte finish.', ingredients: ['Vitamin E', 'Jojoba Oil', 'Mineral Pigments'], reviews: [{name: 'Pooja T.', rating: '5 ★', text: 'Best quality ever!'}] },
+    { id: 2, category: 'makeup', title: 'Honey Beauty HD Liquid Foundation', price: 1299, baseName: 'foundation', rating: '4.7 ★', description: 'Professional high-definition coverage that blurs all pores and fine lines.', ingredients: ['Hyaluronic Acid', 'Aloe Extracts'], reviews: [{name: 'Riya S.', rating: '5 ★', text: 'Flawless finish!'}] },
+    { id: 3, category: 'makeup', title: 'Honey Beauty Eyeshadow Palette', price: 1599, baseName: 'eyeshadow', rating: '4.9 ★', description: '12 rich, highly pigmented shades for any party look.', ingredients: ['Mica', 'Mineral Oil'], reviews: [{name: 'Kajal P.', rating: '5 ★', text: 'Amazing colors.'}] },
+    { id: 4, category: 'makeup', title: 'Honey Beauty Organic Rose Blush', price: 650, baseName: 'bulsh', rating: '4.6 ★', description: 'Talc-free powder for a natural healthy rosy glow.', ingredients: ['Rose Petal Powder', 'Vitamin C'], reviews: [{name: 'Anjali D.', rating: '4 ★', text: 'Very natural.'}] },
+    { id: 5, category: 'makeup', title: 'Honey Beauty Volume Mascara', price: 750, baseName: 'mascara', rating: '4.5 ★', description: 'Waterproof formula for extreme lash thickness and length.', ingredients: ['Charcoal Pigments', 'Castor Oil'], reviews: [{name: 'Sneha K.', rating: '4 ★', text: 'Long lasting.'}] },
+    { id: 6, category: 'makeup', title: 'Honey Beauty Matte Primer', price: 899, baseName: 'primer', rating: '4.4 ★', description: 'Oil-control gel primer that acts as a velvet canvas.', ingredients: ['Zinc Oxide', 'Glycerin'], reviews: [{name: 'Mital P.', rating: '4 ★', text: 'Smooth.'}] },
+    { id: 7, category: 'makeup', title: 'Honey Beauty Glow Highlighter', price: 699, baseName: 'highlighter', rating: '4.8 ★', description: 'Liquid highlighter with micro-diamond dust.', ingredients: ['Diamond Dust', 'Shea Butter'], reviews: [{name: 'Sandhya R.', rating: '5 ★', text: 'Stunning glow.'}] },
+    { id: 8, category: 'makeup', title: 'Honey Beauty Liquid Lipstick', price: 650, baseName: 'liquid lipstick', rating: '4.7 ★', description: 'Smudge-proof matte liquid lipstick.', ingredients: ['Argan Oil', 'Coconut Oil'], reviews: [{name: 'Nisha M.', rating: '5 ★', text: 'Perfect.'}] },
+    { id: 9, category: 'makeup', title: 'Honey Beauty Waterproof Eyeliner', price: 550, baseName: 'eyeliner', rating: '4.6 ★', description: 'Deep matte black eyeliner with precise applicator.', ingredients: ['Carbon Black', 'Polymers'], reviews: [{name: 'Riddhi J.', rating: '4 ★', text: 'Dries fast.'}] },
+    { id: 10, category: 'makeup', title: 'Honey Beauty Contour Stick', price: 750, baseName: 'contour', rating: '4.3 ★', description: 'Creamy contour stick for sharp definition.', ingredients: ['Ozokerite Wax', 'Shea Butter'], reviews: [{name: 'Tanvi S.', rating: '4 ★', text: 'Easy to blend.'}] },
+    { id: 11, category: 'makeup', title: 'Honey Beauty Eyebrow Pencil', price: 450, baseName: 'eyebrow peneil', rating: '4.5 ★', description: 'Natural-looking brow filler.', ingredients: ['Plant Wax', 'Vitamin E'], reviews: [{name: 'Khushi M.', rating: '5 ★', text: 'So natural.'}] },
+    { id: 12, category: 'makeup', title: 'Honey Beauty Lip Liner', price: 350, baseName: 'lipliner', rating: '4.4 ★', description: 'Ultra-creamy matte lip definer.', ingredients: ['Jojoba Oil', 'Synthetic Wax'], reviews: [{name: 'Meera P.', rating: '4 ★', text: 'Does not bleed.'}] },
+    { id: 13, category: 'makeup', title: 'Honey Beauty Plumping Lip Gloss', price: 550, baseName: 'lipgloss', rating: '4.7 ★', description: 'Non-sticky glass-like shine for fuller lips.', ingredients: ['Coconut Oil', 'Shimmer'], reviews: [{name: 'Aanya V.', rating: '5 ★', text: 'Very juicy.'}] },
+    { id: 14, category: 'makeup', title: 'Honey Beauty Blender Sponge', price: 299, baseName: 'beauty blender', rating: '4.8 ★', description: 'Latex-free sponge for smooth blending.', ingredients: ['Hydrophilic Foam'], reviews: [{name: 'Sapna K.', rating: '5 ★', text: 'Best quality.'}] },
+    { id: 15, category: 'makeup', title: 'Honey Beauty Blending Brush', price: 450, baseName: 'brush', rating: '4.6 ★', description: 'Soft synthetic fibers for blending.', ingredients: ['Synthetic Fibers', 'Wood Handle'], reviews: [{name: 'Heena R.', rating: '5 ★', text: 'So soft.'}] },
+    { id: 16, category: 'makeup', title: 'Honey Beauty Brush Set (12pc)', price: 1499, baseName: 'make up brush set', rating: '4.9 ★', description: 'Professional 12-piece makeup brush collection.', ingredients: ['High-Grade Fibers', 'Leather Pouch'], reviews: [{name: 'Kiran G.', rating: '5 ★', text: 'Great kit!'}] },
+    { id: 17, category: 'makeup', title: 'Honey Beauty Eyelash Curler', price: 350, baseName: 'eyelash curler', rating: '4.5 ★', description: 'Ergonomic stainless steel lash lifter.', ingredients: ['Stainless Steel', 'Silicone Pads'], reviews: [{name: 'Riya P.', rating: '4 ★', text: 'Perfect lift.'}] },
+    { id: 18, category: 'makeup', title: 'Honey Beauty Setting Spray', price: 650, baseName: 'seeting spray', rating: '4.7 ★', description: 'Locks makeup for up to 16 hours.', ingredients: ['Aloe Vera', 'Niacinamide'], reviews: [{name: 'Pooja T.', rating: '5 ★', text: 'Fresh look.'}] },
+    { id: 19, category: 'makeup', title: 'Honey Beauty Makeup Remover', price: 450, baseName: 'make up remover', rating: '4.6 ★', description: 'Oil-infused fast-action remover.', ingredients: ['Micelles', 'Argan Oil'], reviews: [{name: 'Om K.', rating: '5 ★', text: 'Fast work.'}] },
+    { id: 20, category: 'skincare', title: 'Honey Beauty Hydrating Micellar Water', price: 550, baseName: 'micellar water', rating: '4.8 ★', description: 'Gentle cleanser for waterproof makeup.', ingredients: ['Glycerin', 'Purified Water'], reviews: [{name: 'Kriti S.', rating: '5 ★', text: 'Very clean.'}] },
+    { id: 21, category: 'skincare', title: 'Honey Beauty Vitamin C Face Serum', price: 899, baseName: 'face Serum', rating: '4.9 ★', description: 'Advanced skin brightening serum that effectively reduces dark spots and pigmentation for a radiant glow.', ingredients: ['15% Pure Vitamin C', 'Hyaluronic Acid Base', 'Ferulic Acid'], reviews: [{name: 'Simran V.', rating: '5 ★', text: 'Glowing skin in just 2 weeks!'}] },
+    { id: 22, category: 'skincare', title: 'Honey Beauty Matte Sunscreen SPF 50', price: 650, baseName: 'sunscreen', rating: '4.7 ★', description: 'Non-sticky broad-spectrum sun protection.', ingredients: ['Zinc Oxide', 'Cucumber'], reviews: [{name: 'Raj K.', rating: '5 ★', text: 'No white cast.'}] },
+    { id: 23, category: 'skincare', title: 'Honey Beauty Tea Tree Face Wash', price: 450, baseName: 'facewash', rating: '4.6 ★', description: 'Anti-acne face wash for clear pores.', ingredients: ['Tea Tree Oil', 'Salicylic Acid'], reviews: [{name: 'Ananya V.', rating: '4 ★', text: 'Great for acne.'}] },
+    { id: 24, category: 'skincare', title: 'Honey Beauty Walnut Face Scrub', price: 400, baseName: 'facescrub', rating: '4.5 ★', description: 'Natural exfoliator for dead skin removal.', ingredients: ['Walnut Shells', 'Vitamin E'], reviews: [{name: 'Mitali P.', rating: '4 ★', text: 'Super smooth.'}] },
+    { id: 25, category: 'skincare', title: 'Honey Beauty Clay Mask', price: 650, baseName: 'clay mask', rating: '4.8 ★', description: 'Purifying mask for pore deep cleaning.', ingredients: ['Kaolin Clay', 'Aloe Vera'], reviews: [{name: 'Megha S.', rating: '5 ★', text: 'Best mask.'}] },
+    { id: 26, category: 'skincare', title: 'Honey Beauty Cleansing Oil', price: 750, baseName: 'cleansing oli', rating: '4.6 ★', description: 'Deep oil cleanser for heavy makeup.', ingredients: ['Jojoba Oil', 'Vitamin E'], reviews: [{name: 'Riya R.', rating: '5 ★', text: 'Works fast.'}] },
+    { id: 27, category: 'skincare', title: 'Honey Beauty Day Cream', price: 850, baseName: 'day cream', rating: '4.7 ★', description: 'SPF-enriched daily light moisturizer.', ingredients: ['Shea Butter', 'SPF 20'], reviews: [{name: 'Kajal K.', rating: '5 ★', text: 'Non-greasy.'}] },
+    { id: 28, category: 'skincare', title: 'Honey Beauty Face Pack', price: 450, baseName: 'face pack', rating: '4.5 ★', description: 'Refreshing herbal pack for dull skin.', ingredients: ['Multani Mitti', 'Rose Water'], reviews: [{name: 'Hina M.', rating: '4 ★', text: 'Refreshing.'}] },
+    { id: 29, category: 'skincare', title: 'Honey Beauty Face Toner', price: 550, baseName: 'face toner', rating: '4.6 ★', description: 'Balancing toner for fresh skin.', ingredients: ['Rose Water', 'Aloe'], reviews: [{name: 'Mahi R.', rating: '4 ★', text: 'Soothing.'}] },
+    { id: 30, category: 'skincare', title: 'Honey Beauty Gel Moisturizer', price: 650, baseName: 'gel moisturizer', rating: '4.7 ★', description: 'Lightweight cooling gel for all skin types.', ingredients: ['Aloe Vera', 'Vitamin E'], reviews: [{name: 'Avi S.', rating: '5 ★', text: 'Perfect.'}] },
+    { id: 31, category: 'skincare', title: 'Honey Beauty Gentle Cleanser', price: 600, baseName: 'Gentle clenser', rating: '4.4 ★', description: 'Mild cleanser for sensitive skin.', ingredients: ['Chamomile', 'Glycerin'], reviews: [{name: 'Sara K.', rating: '4 ★', text: 'Gentle.'}] },
+    { id: 32, category: 'skincare', title: 'Honey Beauty Micellar Water', price: 550, baseName: 'micellar water', rating: '4.6 ★', description: 'Refreshing water cleanser.', ingredients: ['Purified Water', 'Citric Acid'], reviews: [{name: 'Yash R.', rating: '4 ★', text: 'So easy.'}] },
+    { id: 33, category: 'skincare', title: 'Honey Beauty Night Cream', price: 950, baseName: 'night cram', rating: '4.8 ★', description: 'Repairing overnight cream for healthy skin.', ingredients: ['Retinol', 'Hyaluronic Acid'], reviews: [{name: 'Hina S.', rating: '5 ★', text: 'Love it.'}] },
+    { id: 34, category: 'skincare', title: 'Honey Beauty Sheet Mask', price: 299, baseName: 'sheet mask', rating: '4.8 ★', description: 'Instant hydration boost.', ingredients: ['Hyaluronic Acid', 'Peptides'], reviews: [{name: 'Sia K.', rating: '5 ★', text: 'Refreshing.'}] },
+    { id: 35, category: 'skincare', title: 'Honey Beauty Under Eye Cream', price: 650, baseName: 'under eyes cream', rating: '4.7 ★', description: 'Brightening cream for dark circles.', ingredients: ['Caffeine', 'Vitamin K'], reviews: [{name: 'Mina S.', rating: '5 ★', text: 'Visible result.'}] },
+    { id: 36, category: 'skincare', title: 'Honey Beauty Body Lotion', price: 550, baseName: 'body lotion', rating: '4.6 ★', description: 'Smooth body lotion for 24h hydration.', ingredients: ['Shea Butter', 'Almond Oil'], reviews: [{name: 'Rahul P.', rating: '4 ★', text: 'Soft skin.'}] },
+    { id: 37, category: 'makeup', title: 'Honey Beauty Primer', price: 650, baseName: 'primer', rating: '4.7 ★', description: 'Silk-touch pore-filling primer.', ingredients: ['Silicone', 'Vitamin E'], reviews: [{name: 'Rohan P.', rating: '5 ★', text: 'Makeup stays.'}] }
+];
+    
+
+        let totalCartValue = 0; let selectedProduct = null; let isAddedToCart = false;
+        let currentCategory = 'all';
+
+        function tryLoadProductImage(imgElement, product) {
+            let name = product.baseName;
+            // 📁 પાથ સેટિંગ: તમારા ફોલ્ડર 'make up image' માંથી જ ઓફલાઇન ફોટો ખેંચશે!
+            let path = " ";
+            let formats = [path + name + '.jpg', path + name + '.png', path + name + '.webp', path + name + '.jpeg', path + name + '.jpg.jpg'];
+            let currentTry = 0; imgElement.src = formats[currentTry];
+            imgElement.onerror = function() {
+                currentTry++;
+                if (currentTry < formats.length) { imgElement.src = formats[currentTry]; }
+                else { imgElement.src = 'https://placehold.co/500x500/ffe4e1/ff6699?text=' + name; imgElement.onerror = null; }
+            };
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(category === 'all') document.getElementById('tab-all').classList.add('active');
+            if(category === 'makeup') document.getElementById('tab-makeup').classList.add('active');
+            if(category === 'skincare') document.getElementById('tab-skincare').classList.add('active');
+            
+            const titleElement = document.getElementById('grid-title');
+            if(category === 'all') titleElement.innerText = "Our Best Sellers";
+            if(category === 'makeup') titleElement.innerText = "💄 Premium Makeup Collection";
+            if(category === 'skincare') titleElement.innerText = "🌿 Fresh Skin Care Routine";
+            generateMeeshoStoreGrid();
+        }
+
+        function generateMeeshoStoreGrid() {
+            const grid = document.getElementById('meesho-product-grid'); grid.innerHTML = "";
+            const filtered = products.filter(p => currentCategory === 'all' || p.category === currentCategory);
+            
+            filtered.forEach(p => {
+                const card = document.createElement('div'); card.className = 'p-card';
+                card.onclick = function() { openProductDetailsView(p.id); }; 
+                const imgBox = document.createElement('div'); imgBox.className = 'p-img-box';
+                const imgTag = document.createElement('img');
+                tryLoadProductImage(imgTag, p);
+                imgBox.appendChild(imgTag);
+                const infoBox = document.createElement('div');
+                infoBox.className = 'p-info';
+                infoBox.innerHTML = `<h3>${p.title}</h3><div><span class="p-rating-badge">${p.rating}</span><div class="p-price-row">₹${p.price}</div></div>`;
+                card.appendChild(imgBox); card.appendChild(infoBox); grid.appendChild(card);
+            });
+        }
+
+        function openProductDetailsView(productId) {
+            const p = products.find(item => item.id === productId); selectedProduct = p; isAddedToCart = false;
+            const cartBtn = document.getElementById('btn-cart-toggle');
+            cartBtn.innerHTML = `<i class="fa-solid fa-basket-shopping"></i> Add to Cart`;
+            tryLoadProductImage(document.getElementById('meesho-det-img'), p);
+            document.getElementById('meesho-det-title').innerText = p.title;
+            document.getElementById('meesho-det-price').innerText = "₹" + p.price;
+            document.getElementById('meesho-det-rate-badge').innerText = p.rating;
+            document.getElementById('meesho-det-description').innerText = p.description;
+            
+            const ingList = document.getElementById('meesho-det-ingredients'); ingList.innerHTML = "";
+            p.ingredients.forEach(ing => {
+                const li = document.createElement('li'); li.innerText = ing; ingList.appendChild(li);
+            });
+
+            const reviewBox = document.getElementById('meesho-reviews-list'); reviewBox.innerHTML = "";
+            p.reviews.forEach(r => {
+                const rDiv = document.createElement('div'); rDiv.className = 'review-item';
+                rDiv.innerHTML = `<div class="reviewer-name">❤️ ${r.name} <span style="background:#38a169; color:white; font-size:10px; padding:1px 5px; border-radius:10px; margin-left:10px;">${r.rating}</span></div><div class="review-text">${r.text}</div>`;
+                reviewBox.appendChild(rDiv);
+            });
+            hideAllPages(); document.getElementById('details-page').style.display = 'block'; window.scrollTo(0, 0);
+        }
+
+        function toggleCartAction() {
+            const cartBtn = document.getElementById('btn-cart-toggle');
+            if(!isAddedToCart) {
+                totalCartValue += selectedProduct.price; cartBtn.innerHTML = `❌ Remove from Cart`; isAddedToCart = true; alert("Added to cart! 🛍️");
+            } else {
+                if(totalCartValue >= selectedProduct.price) { totalCartValue -= selectedProduct.price; }
+                cartBtn.innerHTML = `<i class="fa-solid fa-basket-shopping"></i> Add to Cart`; isAddedToCart = false; alert("Removed! ❌");
+            }
+            document.getElementById('cart-total').innerText = totalCartValue;
+        }
+
+        function confirmFinalOrder() {
+            const name = document.getElementById('c-name').value; if(!name) { alert("Please enter name!"); return; }
+            document.getElementById('display-cust-name').innerText = name;
+            document.getElementById('checkout-form-block').style.display = 'none';
+            document.getElementById('checkout-success-block').style.display = 'block';
+            totalCartValue = 0; document.getElementById('cart-total').innerText = "0";
+        }
+
+        function hideAllPages() { document.getElementById('store-page').style.display = 'none'; document.getElementById('details-page').style.display = 'none'; document.getElementById('checkout-page').style.display = 'none'; }
+    
+        function handleLogin() {
+    const email = document.getElementById('email').value;
+    const pass = document.getElementById('pass').value;
+
+    if (email === "" || pass === "") {
+        alert("⚠️ Please enter both Email and Password to continue!");
+        return; 
+    }
+
+    if (pass.length < 8) {
+        alert("⚠️ Password must be at least 8 characters long!");
+        return;
+    }
+
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('app-header').style.display = 'flex';
+    goToStoreHome(); 
+    generateMeeshoStoreGrid(); // Ye line products ko screen par load karegi!
+}
+        function goToStoreHome() { hideAllPages(); document.getElementById('store-page').style.display = 'block'; }
+        function goToCheckout() { hideAllPages(); document.getElementById('checkout-page').style.display = 'block'; }
+        function resetToHomeStore() { document.getElementById('checkout-form-block').style.display = 'block'; document.getElementById('checkout-success-block').style.display = 'none'; goToStoreHome(); }
+        function searchFilter() {
+            let val = document.getElementById('meesho-search').value.toLowerCase();
+            let cards = document.getElementsByClassName('p-card');
+            for(let card of cards) {
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                card.style.display = title.includes(val) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
